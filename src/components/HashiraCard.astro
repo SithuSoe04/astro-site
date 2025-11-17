@@ -1,0 +1,53 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  breathing: string;
+  slug: string;
+}
+
+const { name, title, breathing, slug } = Astro.props;
+---
+
+<a href={`/hashira/${slug}`} class="hashira-card">
+  <div class="card-content" transition:name={`hashira-card-${slug}`}>
+    <h3>{name}</h3>
+    <p class="title">{title}</p>
+    <p class="breathing">{breathing}</p>
+  </div>
+</a>
+
+<style>
+  .hashira-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    color: inherit;
+  }
+
+  .hashira-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+  }
+
+  .card-content h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    color: #c41e3a;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  .breathing {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+  }
+</style>

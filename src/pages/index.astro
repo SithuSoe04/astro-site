@@ -1,11 +1,65 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import HashiraCard from '../components/HashiraCard.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const hashiras = [
+  { name: "Giyu Tomioka", title: "Water Hashira", breathing: "Water Breathing", slug: "giyu-tomioka" },
+  { name: "Shinobu Kocho", title: "Insect Hashira", breathing: "Insect Breathing", slug: "shinobu-kocho" },
+  { name: "Kyojuro Rengoku", title: "Flame Hashira", breathing: "Flame Breathing", slug: "kyojuro-rengoku" },
+  { name: "Tengen Uzui", title: "Sound Hashira", breathing: "Sound Breathing", slug: "tengen-uzui" },
+  { name: "Muichiro Tokito", title: "Mist Hashira", breathing: "Mist Breathing", slug: "muichiro-tokito" },
+  { name: "Mitsuri Kanroji", title: "Love Hashira", breathing: "Love Breathing", slug: "mitsuri-kanroji" },
+  { name: "Obanai Iguro", title: "Serpent Hashira", breathing: "Serpent Breathing", slug: "obanai-iguro" },
+  { name: "Sanemi Shinazugawa", title: "Wind Hashira", breathing: "Wind Breathing", slug: "sanemi-shinazugawa" },
+  { name: "Gyomei Himejima", title: "Stone Hashira", breathing: "Stone Breathing", slug: "gyomei-himejima" }
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="The Hashira - Demon Slayer Corps">
+  <Header />
+  <main>
+    <section class="hero">
+      <h2>The Nine Pillars</h2>
+      <p>The most elite warriors of the Demon Slayer Corps</p>
+    </section>
+
+    <div class="hashira-grid">
+      {hashiras.map(hashira => (
+        <HashiraCard {...hashira} />
+      ))}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
+  }
+
+  .hero h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  .hashira-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

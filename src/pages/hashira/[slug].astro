@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const hashiraData = {
+    'giyu-tomioka': {
+      name: 'Giyu Tomioka',
+      title: 'Water Hashira',
+      breathing: 'Water Breathing',
+      bio: 'Giyu Tomioka is the stoic and reserved Water Hashira. Despite his calm demeanor, he is a formidable warrior with exceptional mastery of Water Breathing techniques.',
+      personality: 'Reserved and serious, Giyu often keeps to himself. He has a strong sense of justice and duty, though he struggles with feelings of inadequacy.',
+      abilities: 'As a master of Water Breathing, Giyu can perform all ten forms with deadly precision. His signature technique, Dead Calm, creates an area where his blade neutralizes all incoming attacks.'
+    },
+    'shinobu-kocho': {
+      name: 'Shinobu Kocho',
+      title: 'Insect Hashira',
+      breathing: 'Insect Breathing',
+      bio: 'Shinobu Kocho is the graceful and intelligent Insect Hashira. Due to her lack of physical strength to behead demons, she developed a unique poison-based fighting style.',
+      personality: 'Outwardly friendly and teasing, Shinobu maintains a cheerful facade while harboring deep anger toward demons. She is highly intelligent and serves as the Corps\' physician.',
+      abilities: 'Shinobu uses a modified Nichirin blade to inject powerful wisteria-based poisons into demons. Her incredible speed makes her one of the fastest Hashira.'
+    },
+    'kyojuro-rengoku': {
+      name: 'Kyojuro Rengoku',
+      title: 'Flame Hashira',
+      breathing: 'Flame Breathing',
+      bio: 'Kyojuro Rengoku is the passionate and charismatic Flame Hashira. His unwavering sense of duty and infectious enthusiasm inspire all demon slayers.',
+      personality: 'Enthusiastic, honorable, and kind-hearted, Rengoku believes in protecting the weak and values all human life. His positive attitude is unshakeable.',
+      abilities: 'Rengoku has mastered all nine forms of Flame Breathing, wielding fire-like sword techniques with incredible power and precision.'
+    },
+    'tengen-uzui': {
+      name: 'Tengen Uzui',
+      title: 'Sound Hashira',
+      breathing: 'Sound Breathing',
+      bio: 'Tengen Uzui is the flamboyant Sound Hashira and a former shinobi. He values flash and showmanship while being an exceptionally skilled warrior.',
+      personality: 'Self-proclaimed "God of Festivals," Tengen is flashy, confident, and eccentric. Despite his boastful nature, he deeply cares for his wives and comrades.',
+      abilities: 'Tengen combines Sound Breathing with explosive techniques and exceptional speed. His Musical Score technique allows him to analyze and predict enemy movements.'
+    },
+    'muichiro-tokito': {
+      name: 'Muichiro Tokito',
+      title: 'Mist Hashira',
+      breathing: 'Mist Breathing',
+      bio: 'Muichiro Tokito is the youngest Hashira who achieved the rank in just two months. Despite his age, he possesses incredible talent and power.',
+      personality: 'Initially distant and airheaded due to amnesia, Muichiro gradually becomes more caring. He is a prodigy with natural talent for swordsmanship.',
+      abilities: 'Muichiro has created his own seventh form of Mist Breathing. His techniques create obscuring mists that confuse enemies while he strikes with blinding speed.'
+    },
+    'mitsuri-kanroji': {
+      name: 'Mitsuri Kanroji',
+      title: 'Love Hashira',
+      breathing: 'Love Breathing',
+      bio: 'Mitsuri Kanroji is the emotional and affectionate Love Hashira. Her unique muscle composition gives her exceptional flexibility and strength.',
+      personality: 'Cheerful, emotional, and passionate, Mitsuri is easily flustered and caring toward others. She joined the Corps hoping to find a husband stronger than herself.',
+      abilities: 'Mitsuri wields a unique whip-like Nichirin blade that only she can handle. Her Love Breathing style emphasizes her flexibility and rapid attacks.'
+    },
+    'obanai-iguro': {
+      name: 'Obanai Iguro',
+      title: 'Serpent Hashira',
+      breathing: 'Serpent Breathing',
+      bio: 'Obanai Iguro is the strict and calculating Serpent Hashira, always accompanied by his snake companion Kaburamaru.',
+      personality: 'Harsh and strict toward others, Obanai has a traumatic past that shaped his personality. He is deeply devoted to Mitsuri and has a strong sense of duty.',
+      abilities: 'Obanai\'s Serpent Breathing creates winding, unpredictable attacks. Kaburamaru assists by providing battlefield awareness to compensate for Obanai\'s partial blindness.'
+    },
+    'sanemi-shinazugawa': {
+      name: 'Sanemi Shinazugawa',
+      title: 'Wind Hashira',
+      breathing: 'Wind Breathing',
+      bio: 'Sanemi Shinazugawa is the aggressive and hot-blooded Wind Hashira with an intense hatred for demons born from personal tragedy.',
+      personality: 'Abrasive, impulsive, and aggressive, Sanemi hides a protective nature beneath his rough exterior. His experiences fuel his relentless demon-hunting.',
+      abilities: 'Sanemi\'s Wind Breathing creates devastating cutting attacks. His rare blood type is intoxicating to demons, which he uses as both bait and advantage.'
+    },
+    'gyomei-himejima': {
+      name: 'Gyomei Himejima',
+      title: 'Stone Hashira',
+      breathing: 'Stone Breathing',
+      bio: 'Gyomei Himejima is the gentle giant and strongest of all Hashira. Despite being blind, his other senses are incredibly sharp.',
+      personality: 'Sensitive and gentle-hearted, Gyomei cries easily and is deeply religious. His calm wisdom and immense strength make him a natural leader.',
+      abilities: 'Gyomei wields a unique spiked flail and axe connected by a chain. His Stone Breathing techniques showcase overwhelming power and defensive capabilities.'
+    }
+  };
+
+  return Object.entries(hashiraData).map(([slug, data]) => ({
+    params: { slug },
+    props: data
+  }));
+}
+
+const { slug } = Astro.params;
+const { name, title, breathing, bio, personality, abilities } = Astro.props;
+---
+
+<BaseLayout title={`${name} - ${title}`} description={bio}>
+  <Header />
+  <main>
+    <article class="hashira-detail">
+      <div class="header-section" transition:name={`hashira-card-${slug}`}>
+        <h1>{name}</h1>
+        <div class="rank">{title}</div>
+        <span class="breathing">{breathing}</span>
+      </div>
+
+      <section>
+        <h2>Biography</h2>
+        <p>{bio}</p>
+      </section>
+
+      <section>
+        <h2>Personality</h2>
+        <p>{personality}</p>
+      </section>
+
+      <section>
+        <h2>Abilities</h2>
+        <p>{abilities}</p>
+      </section>
+
+      <a href="/">← Back to all Hashira</a>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hashira-detail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .header-section {
+    text-align: center;
+    padding: 2rem;
+    border-bottom: 2px solid #c41e3a;
+    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .rank {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    color: #c41e3a;
+  }
+
+  .breathing {
+    display: inline-block;
+    background: rgba(196, 30, 58, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #b0b0b0;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    border-left: 4px solid #c41e3a;
+    padding-left: 1rem;
+  }
+
+  p {
+    color: #d0d0d0;
+    line-height: 1.8;
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #d0d0d0;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+  }
+</style>

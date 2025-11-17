@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="About the Hashira" description="Learn about the elite warriors of the Demon Slayer Corps">
+  <Header />
+  <main>
+    <article class="content">
+      <h1>About the Hashira</h1>
+      
+      <p>The <strong>Hashira</strong> (柱, Pillars) are the nine most powerful swordsmen in the Demon Slayer Corps. Each Hashira is a master of a unique Breathing Style, and they serve as the organization's elite warriors in the fight against demons.</p>
+
+      <h2>Role and Responsibilities</h2>
+      
+      <p>The Hashira are tasked with:</p>
+      <ul>
+        <li>Leading missions against the most powerful demons</li>
+        <li>Training lower-ranked demon slayers</li>
+        <li>Protecting humanity from demonic threats</li>
+        <li>Upholding the traditions of the Demon Slayer Corps</li>
+      </ul>
+
+      <h2>Breathing Styles</h2>
+      
+      <p>Each Hashira has mastered one of the various Breathing Styles derived from Sun Breathing, the original technique. These styles include Water, Flame, Wind, Stone, Thunder, Mist, Serpent, Insect, Sound, and Love Breathing.</p>
+
+      <p>The Hashira represent the pinnacle of demon slayer skill and dedication, each bringing their unique personality and fighting style to the Corps.</p>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #c41e3a;
+    padding-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 2rem 0 1rem;
+  }
+
+  p {
+    margin-bottom: 1.2rem;
+    color: #d0d0d0;
+  }
+
+  ul {
+    margin-left: 2rem;
+    margin-bottom: 1.2rem;
+    color: #d0d0d0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+</style>
